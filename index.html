@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAP Consulting Services - Jigsutech Business Solution</title>
+<meta name="description" content="Streamline your business operations with our reliable SAP Consulting company. We have helped multiple clients for SAP Implementation and SAP Support.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #102040;
+    --blue: #1a4a9a;
+    --blue-bright: #1e5bbf;
+    --gold: #f5a623;
+    --gold-light: #ffc145;
+    --white: #ffffff;
+    --light-gray: #f4f6fb;
+    --gray: #6b7a99;
+    --text: #2c3e6b;
+    --border: #dde3f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--navy);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--blue), var(--gold));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 16px; color: white;
+    letter-spacing: -1px;
+  }
+  .nav-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 18px; color: var(--white);
+    line-height: 1.1;
+  }
+  .nav-logo-text span { display: block; font-size: 10px; font-weight: 400; color: var(--gold); letter-spacing: 2px; }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 6px;
+    list-style: none;
+  }
+  .nav-links > li { position: relative; }
+  .nav-links > li > a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    padding: 8px 12px; border-radius: 4px;
+    display: flex; align-items: center; gap: 4px;
+    transition: all 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .nav-links > li > a:hover { color: var(--gold); background: rgba(255,255,255,0.07); }
+
+  .dropdown { position: relative; }
+  .dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 8px); left: 0;
+    background: white; min-width: 220px;
+    border-radius: 8px; box-shadow: 0 8px 32px rgba(10,22,40,0.18);
+    padding: 8px 0; z-index: 200;
+    border-top: 3px solid var(--gold);
+  }
+  .dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu li { list-style: none; }
+  .dropdown-menu li a {
+    display: block; padding: 9px 20px;
+    font-size: 13px; color: var(--text);
+    text-decoration: none; transition: all 0.15s;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .dropdown-menu li a:hover { background: var(--light-gray); color: var(--blue); padding-left: 26px; }
+
+  .has-sub { position: relative; }
+  .has-sub > .sub-menu {
+    display: none; position: absolute; left: 100%; top: 0;
+    background: white; min-width: 220px;
+    border-radius: 8px; box-shadow: 0 8px 32px rgba(10,22,40,0.18);
+    padding: 8px 0;
+    border-top: 3px solid var(--blue);
+  }
+  .has-sub:hover > .sub-menu { display: block; }
+  .has-sub > a::after { content: ' ›'; }
+
+  .nav-cta {
+    background: var(--gold) !important; color: var(--navy) !important;
+    font-weight: 700 !important; border-radius: 6px !important;
+    padding: 8px 18px !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 70px;
+    background: var(--navy);
+    min-height: 560px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(26,74,154,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(245,166,35,0.1) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 60px 40px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,166,35,0.15); border: 1px solid rgba(245,166,35,0.3);
+    color: var(--gold); font-size: 11px; font-weight: 700;
+    padding: 6px 14px; border-radius: 20px; letter-spacing: 1.5px;
+    margin-bottom: 20px; font-family: 'Montserrat', sans-serif;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 46px; font-weight: 900; color: white;
+    line-height: 1.15; margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 13px 28px; border-radius: 6px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+    text-decoration: none; transition: all 0.25s;
+    box-shadow: 0 4px 16px rgba(245,166,35,0.35);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.4); }
+  .btn-outline {
+    background: transparent; color: white;
+    padding: 13px 28px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.35);
+    font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 24px 20px; text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+  .stat-card:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); transform: translateY(-3px); }
+  .stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px; font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px; font-weight: 500; letter-spacing: 0.5px; }
+
+  /* ── FEATURES BAR ── */
+  .features-bar {
+    background: var(--blue);
+    padding: 20px 40px;
+  }
+  .features-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-around; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .feature-item {
+    display: flex; align-items: center; gap: 10px;
+    color: white; font-size: 13px; font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .feature-item .fi { font-size: 20px; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 80px 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px; font-weight: 800;
+    color: var(--navy); line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 15px; color: var(--gray); line-height: 1.7;
+    max-width: 600px;
+  }
+  .section-header { margin-bottom: 48px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-sub { margin: 0 auto; }
+
+  /* ── SERVICES TAB ── */
+  .services-section { background: var(--light-gray); }
+  .services-tabs {
+    display: flex; gap: 0; flex-wrap: wrap;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .tab-btn {
+    padding: 14px 22px; font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 600; color: var(--gray);
+    border: none; background: none; cursor: pointer;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .tab-btn.active { color: var(--blue); border-bottom-color: var(--gold); }
+  .tab-btn:hover { color: var(--blue); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+
+  .service-text h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 16px;
+  }
+  .service-text p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
+  .service-points { list-style: none; margin-bottom: 28px; }
+  .service-points li {
+    padding: 7px 0; font-size: 14px; color: var(--text);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .service-points li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  .service-img-box {
+    background: var(--navy);
+    border-radius: 16px; overflow: hidden;
+    min-height: 300px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .service-icon-big { font-size: 80px; opacity: 0.9; }
+  .service-img-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(10,22,40,0.9));
+    padding: 24px 20px;
+    color: white; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+  }
+
+  /* ── WHY CHOOSE ── */
+  .why-section { background: white; }
+  .why-intro {
+    max-width: 760px; margin-bottom: 60px;
+  }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-bottom: 60px;
+  }
+  .why-card {
+    background: var(--light-gray);
+    border-radius: 14px; padding: 32px 28px;
+    border: 1px solid var(--border);
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .why-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--gold));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .why-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(10,22,40,0.1); }
+  .why-card:hover::before { transform: scaleX(1); }
+  .why-icon { font-size: 36px; margin-bottom: 16px; }
+  .why-card h4 {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 16px; color: var(--navy); margin-bottom: 10px;
+  }
+  .why-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* Approach steps */
+  .approach-section { background: var(--navy); padding: 80px 40px; }
+  .approach-title { color: white; }
+  .approach-sub { color: rgba(255,255,255,0.6) !important; }
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    margin-top: 48px; position: relative;
+  }
+  .steps-grid::before {
+    content: '';
+    position: absolute; top: 38px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--gold));
+  }
+  .step-item { text-align: center; padding: 0 8px; position: relative; z-index: 1; }
+  .step-circle {
+    width: 76px; height: 76px; border-radius: 50%;
+    background: var(--navy); border: 3px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px;
+    color: var(--gold); transition: all 0.3s;
+  }
+  .step-item:hover .step-circle { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .step-label {
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.3;
+  }
+
+  /* ── INDUSTRIES ── */
+  .industries-section { background: var(--light-gray); }
+  .ind-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+  .ind-card {
+    background: white; border-radius: 12px;
+    padding: 28px 20px; text-align: center;
+    border: 1px solid var(--border); transition: all 0.3s;
+    cursor: default;
+  }
+  .ind-card:hover {
+    transform: translateY(-5px); border-color: var(--gold);
+    box-shadow: 0 8px 28px rgba(10,22,40,0.1);
+  }
+  .ind-icon { font-size: 40px; margin-bottom: 12px; }
+  .ind-card h4 {
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 13px; color: var(--navy); margin-bottom: 6px;
+  }
+  .ind-card p { font-size: 12px; color: var(--gray); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section { background: white; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .testi-card {
+    background: var(--light-gray); border-radius: 14px;
+    padding: 32px 28px; border: 1px solid var(--border);
+    position: relative; transition: all 0.3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(10,22,40,0.1); }
+  .testi-card::before {
+    content: '"'; font-size: 80px; font-family: Georgia, serif;
+    color: var(--gold); opacity: 0.3; position: absolute;
+    top: 10px; left: 20px; line-height: 1;
+  }
+  .testi-text {
+    font-size: 14px; color: var(--text); line-height: 1.8;
+    margin-bottom: 24px; padding-top: 10px; position: relative; z-index: 1;
+  }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-weight: 800; color: white; font-size: 16px;
+  }
+  .testi-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--navy); }
+  .testi-role { font-size: 12px; color: var(--gray); }
+
+  /* ── CERTS ── */
+  .certs-section { background: var(--navy); padding: 50px 40px; }
+  .certs-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 30px;
+  }
+  .certs-left h3 { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: white; margin-bottom: 6px; }
+  .certs-left p { color: rgba(255,255,255,0.6); font-size: 14px; }
+  .cert-badges { display: flex; gap: 20px; flex-wrap: wrap; }
+  .cert-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 14px 22px; text-align: center;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 12px; color: white; letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+  .cert-badge:hover { background: rgba(245,166,35,0.15); border-color: var(--gold); color: var(--gold); }
+  .cert-badge span { display: block; font-size: 20px; margin-bottom: 4px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+    padding: 80px 40px; text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900;
+    color: white; margin-bottom: 16px;
+  }
+  .cta-section p { color: rgba(255,255,255,0.7); font-size: 16px; margin-bottom: 36px; }
+
+  /* ── FOOTER ── */
+  footer { background: #050e1f; padding: 60px 40px 0; }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 48px;
+  }
+  .footer-brand h3 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px;
+    color: white; margin-bottom: 14px;
+  }
+  .footer-brand p { color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.8; margin-bottom: 20px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6); font-size: 14px; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-btn:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+  .footer-col h4 {
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px;
+    color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.55); font-size: 13px; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
+
+  .footer-contact-item { display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start; }
+  .footer-contact-item .fci { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .footer-contact-item span { color: rgba(255,255,255,0.55); font-size: 13px; line-height: 1.5; }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 12px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: rgba(255,255,255,0.35); font-size: 12px; text-decoration: none; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── CONTACT MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(5,14,31,0.75); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white; border-radius: 16px; padding: 40px;
+    width: 90%; max-width: 480px; position: relative;
+    box-shadow: 0 24px 80px rgba(5,14,31,0.4);
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--light-gray); border: none; border-radius: 50%;
+    width: 32px; height: 32px; cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center; color: var(--gray);
+  }
+  .modal-close:hover { background: var(--border); }
+  .modal h3 {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 22px; color: var(--navy); margin-bottom: 6px;
+  }
+  .modal p { color: var(--gray); font-size: 14px; margin-bottom: 24px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--text); margin-bottom: 6px;
+    font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 14px; font-family: 'Open Sans', sans-serif; color: var(--text);
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--blue);
+  }
+  .form-group textarea { min-height: 90px; resize: vertical; }
+  .btn-submit {
+    width: 100%; background: var(--blue); color: white;
+    border: none; padding: 14px; border-radius: 8px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-submit:hover { background: var(--navy); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { grid-template-columns: repeat(4,1fr); }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .ind-grid { grid-template-columns: repeat(2,1fr); }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .steps-grid { grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .steps-grid::before { display: none; }
+    .tab-panel.active { grid-template-columns: 1fr; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 32px; }
+    .section-title { font-size: 26px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .ind-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2,1fr); }
+    .hero-stats { grid-template-columns: repeat(2,1fr); }
+    .certs-inner { flex-direction: column; }
+    .cta-section h2 { font-size: 26px; }
+  }
+
+  /* Scroll animation */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">JB</div>
+    <div class="nav-logo-text">
+      Jigsutech
+      <span>BUSINESS SOLUTION</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a href="#">Services ▾</a>
+      <ul class="dropdown-menu">
+        <li class="has-sub"><a href="services/sap-implementation.html">SAP Implementation</a>
+          <ul class="sub-menu">
+            <li><a href="implementation/private-cloud.html">RISE with SAP S/4 HANA Private Cloud</a></li>
+            <li><a href="implementation/public-cloud.html">RISE with SAP S/4 HANA Public Cloud</a></li>
+            <li><a href="implementation/ecc-rollouts.html">SAP ECC & S/4 HANA Rollouts</a></li>
+            <li><a href="implementation/ecc-to-s4hana.html">SAP Migration – ECC to S/4 HANA</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="services/rise-with-sap.html">RISE With SAP</a>
+          <ul class="sub-menu">
+            <li><a href="services/rise-with-sap.html#private-cloud">Private Cloud</a></li>
+            <li><a href="services/rise-with-sap.html#public-cloud">Public Cloud</a></li>
+          </ul>
+        </li>
+        <li><a href="services/sap-migration.html">SAP Migration</a></li>
+        <li class="has-sub"><a href="services/sap-integration.html">SAP Integration</a>
+          <ul class="sub-menu">
+            <li><a href="integration/machine-integration.html">Machine Integration</a></li>
+            <li><a href="integration/ecommerce.html">E-Commerce</a></li>
+            <li><a href="integration/websites.html">Websites</a></li>
+            <li><a href="integration/payment-gateway.html">Payment Gateway</a></li>
+            <li><a href="integration/crm-hcm.html">HCM, Salesforce & CRMs</a></li>
+            <li><a href="integration/bank-integration.html">Bank Integration</a></li>
+            <li><a href="integration/einvoice-ewaybill.html">E-Invoice & E-Way Bill</a></li>
+            <li><a href="integration/weighbridge.html">Weighbridge</a></li>
+            <li><a href="integration/other-integrations.html">Other Integrations</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="services/sap-support.html">SAP Support</a>
+          <ul class="sub-menu">
+            <li><a href="services/sap-support.html#ecc-support">SAP ECC & S/4 HANA Support</a></li>
+            <li><a href="services/sap-support.html#upgrades">Technical & Functional Upgrades</a></li>
+            <li><a href="services/sap-support.html#audit">Audit & System Monitoring</a></li>
+            <li><a href="services/sap-support.html#bpr">BPR – Business Process Reengineering</a></li>
+            <li><a href="services/sap-support.html#resources">Resources at Client Site</a></li>
+          </ul>
+        </li>
+        <li><a href="services/development.html">Development</a></li>
+        <li><a href="services/staffing.html">Staffing</a></li>
+        <li><a href="services/salesforce.html">Salesforce</a></li>
+      </ul>
+    </li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="industries.html">Industry</a></li>
+    <li><a href="careers.html">Careers</a></li>
+    <li><a href="blogs.html">Blogs</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(); return false;">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">SAP CERTIFIED CONSULTING PARTNER</div>
+      <h1>Empowering Businesses with <span>SAP Expertise</span></h1>
+      <p>Jigsutech Business Solution is a professional IT services and Management Consulting firm specializing in cost-effective, high-value SAP solutions — transforming how enterprises operate and grow.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#contact" class="btn-outline" onclick="openModal()">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">96%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">Industries Served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES BAR -->
+<div class="features-bar">
+  <div class="features-inner">
+    <div class="feature-item"><span class="fi">🎯</span> Tailored Solutions</div>
+    <div class="feature-item"><span class="fi">🔗</span> Seamless Integration</div>
+    <div class="feature-item"><span class="fi">🛡️</span> Reliable Support</div>
+    <div class="feature-item"><span class="fi">🤝</span> Trusted Partnership</div>
+    <div class="feature-item"><span class="fi">⚡</span> On-Time Delivery</div>
+    <div class="feature-item"><span class="fi">💰</span> Competitive Pricing</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-title">Our SAP Services</h2>
+      <p class="section-sub">Full lifecycle SAP support — from strategy to implementation to 24/7 managed services</p>
+    </div>
+
+    <div class="services-tabs">
+      <button class="tab-btn active" onclick="switchTab(0)">SAP Implementation</button>
+      <button class="tab-btn" onclick="switchTab(1)">RISE with SAP</button>
+      <button class="tab-btn" onclick="switchTab(2)">Migration & Upgrades</button>
+      <button class="tab-btn" onclick="switchTab(3)">AMS</button>
+      <button class="tab-btn" onclick="switchTab(4)">SAP Integration</button>
+      <button class="tab-btn" onclick="switchTab(5)">SAP Support</button>
+    </div>
+
+    <div class="tab-panel active" id="tab0">
+      <div class="service-text">
+        <h3>SAP Implementation</h3>
+        <p>We are a leading SAP Consulting company. Our adept consultants specializing in SAP implementation services prioritize operational excellence — enhancing your workflow, eliminating inefficiencies, boosting productivity, and improving decision-making capabilities.</p>
+        <ul class="service-points">
+          <li>RISE with SAP S/4 HANA Private Cloud</li>
+          <li>RISE with SAP S/4 HANA Public Cloud</li>
+          <li>SAP ECC & S/4 HANA Rollouts</li>
+          <li>SAP Migration – ECC to S/4 HANA</li>
+          <li>End-to-end project management from blueprint to go-live</li>
+        </ul>
+        <a href="#contact" class="btn-primary" onclick="openModal()">Get Started</a>
+      </div>
+      <div class="service-img-box">
+        <div style="text-align:center; padding: 30px;">
+          <div class="service-icon-big">⚙️</div>
+          <div class="service-img-overlay">SAP Implementation Excellence</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab1">
+      <div class="service-text">
+        <h3>RISE with SAP</h3>
+        <p>RISE with SAP is one of the latest offerings from SAP. It revolutionizes business transformation by providing a comprehensive solution. With agility and continual innovation at its core, RISE with SAP helps organizations transition to an intelligent enterprise through a unique Business Transformation as a Service model.</p>
+        <ul class="service-points">
+          <li>RISE with SAP S/4 HANA Private Cloud</li>
+          <li>RISE with SAP S/4 HANA Public Cloud</li>
+          <li>Tailored and adaptable workflow design</li>
+          <li>Seamless integration with existing toolset</li>
+        </ul>
+        <a href="#contact" class="btn-primary" onclick="openModal()">Get Started</a>
+      </div>
+      <div class="service-img-box">
+        <div style="text-align:center; padding: 30px;">
+          <div class="service-icon-big">🚀</div>
+          <div class="service-img-overlay">Intelligent Enterprise Transformation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab2">
+      <div class="service-text">
+        <h3>SAP Migration & Upgrades</h3>
+        <p>We specialize in seamless data migration to SAP HANA, ensuring a smooth transition. We also assist organizations in migrating to secure cloud environments and offer a comprehensive upgrade approach encompassing auditing, implementation, testing, go-live, and stabilization.</p>
+        <ul class="service-points">
+          <li>Migration to SAP HANA – seamless & zero data loss</li>
+          <li>Migration to secure cloud environments</li>
+          <li>SAP ECC to S/4 HANA migration</li>
+          <li>Comprehensive upgrade auditing & testing</li>
+          <li>Go-live support & post-migration stabilization</li>
+        </ul>
+        <a href="#contact" class="btn-primary" onclick="openModal()">Get Started</a>
+      </div>
+      <div class="service-img-box">
+        <div style="text-align:center; padding: 30px;">
+          <div class="service-icon-big">🔄</div>
+          <div class="service-img-overlay">Seamless Migration & Upgrade Services</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab3">
+      <div class="service-text">
+        <h3>Application Management Services (AMS)</h3>
+        <p>At Jigsutech Business Solution, we offer comprehensive SAP Application Management services to ensure smooth operation and optimization of your SAP systems. Our team of experienced consultants is dedicated to managing and supporting your SAP applications, allowing you to focus on your core business.</p>
+        <ul class="service-points">
+          <li>System monitoring & troubleshooting</li>
+          <li>Performance tuning & enhancement</li>
+          <li>End-to-end application support</li>
+          <li>Stability, security & efficiency assurance</li>
+          <li>Proactive health checks & patch management</li>
+        </ul>
+        <a href="#contact" class="btn-primary" onclick="openModal()">Get Started</a>
+      </div>
+      <div class="service-img-box">
+        <div style="text-align:center; padding: 30px;">
+          <div class="service-icon-big">🖥️</div>
+          <div class="service-img-overlay">24/7 Application Management</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab4">
+      <div class="service-text">
+        <h3>SAP Integration</h3>
+        <p>We specialize in seamless SAP Integration services to streamline business processes and enhance operational efficiency. Our expert team integrates your SAP systems with third-party applications, cloud platforms, and external systems — ensuring real-time data synchronization and process automation.</p>
+        <ul class="service-points">
+          <li>Machine Integration & E-Commerce</li>
+          <li>Payment Gateway & Bank Integration (API & Host-to-Host)</li>
+          <li>HCM, Salesforce & CRM integrations</li>
+          <li>E-Invoice & E-Way Bill with GSP</li>
+          <li>Weighbridge & WhatsApp Integration</li>
+        </ul>
+        <a href="#contact" class="btn-primary" onclick="openModal()">Get Started</a>
+      </div>
+      <div class="service-img-box">
+        <div style="text-align:center; padding: 30px;">
+          <div class="service-icon-big">🔗</div>
+          <div class="service-img-overlay">Seamless System Integration</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab5">
+      <div class="service-text">
+        <h3>SAP Support</h3>
+        <p>We provide comprehensive SAP Support services ensuring smooth and uninterrupted operation of your SAP systems. Our dedicated SAP support team is available round the clock to address technical issues, system maintenance, performance optimization, and user support.</p>
+        <ul class="service-points">
+          <li>SAP ECC & S/4 HANA Support</li>
+          <li>Technical & Functional Upgrades</li>
+          <li>SAP Audit and System Monitoring</li>
+          <li>BPR – Business Process Reengineering</li>
+          <li>Resources at Client Site</li>
+        </ul>
+        <a href="#contact" class="btn-primary" onclick="openModal()">Get Started</a>
+      </div>
+      <div class="service-img-box">
+        <div style="text-align:center; padding: 30px;">
+          <div class="service-icon-big">🛡️</div>
+          <div class="service-img-overlay">Round-the-Clock SAP Support</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why-section" id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">Why To Choose Jigsutech</h2>
+      <p class="section-sub">Choosing the right SAP consulting company is a crucial decision. At Jigsutech Business Solution, we stand apart as industry leaders — offering compelling expertise, a proven track record, and an unwavering commitment to your success.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">🧠</div>
+        <h4>Intellect & Experience</h4>
+        <p>Highly skilled professionals possessing expertise in diverse Business and Technology areas. We employ the best technicians, adhere to proven methodology, and become a true business partner in every project.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">✅</div>
+        <h4>Commitment to Quality</h4>
+        <p>We listen carefully to clients and provide space, time and materials as agreed. Our QA department tests throughout the process to ensure every project is delivered successfully.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">⏰</div>
+        <h4>On Time Delivery</h4>
+        <p>We invest time upfront to understand your needs and manage projects to ensure delivery on time and within budget — keeping you always aware of development progress.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">💰</div>
+        <h4>Competitive Pricing</h4>
+        <p>We render services at competitive prices. Depending on client engagement, we offer fixed price, time & effort based, or dedicated offshore team pricing models.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🏆</div>
+        <h4>Proven Track Record</h4>
+        <p>We have handled small to large-scale projects and implemented solutions for numerous organizations of all sizes. Our satisfied customers are both our best references and source of repeat business.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🤝</div>
+        <h4>Knowledge Transfer</h4>
+        <p>We believe in collaboration and knowledge transfer — empowering our clients' teams with comprehensive product and process knowledge to maximize their SAP investment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach-section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-tag" style="color:var(--gold)">Our Methodology</div>
+      <h2 class="section-title approach-title">Our Implementation Approach</h2>
+      <p class="section-sub approach-sub" style="margin:0 auto">Our roadmap to implementation & development is a collection of six proven steps, each with its own significance.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-item fade-up">
+        <div class="step-circle">1</div>
+        <div class="step-label">Project<br>Preparation</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-circle">2</div>
+        <div class="step-label">Business<br>Blueprint</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-circle">3</div>
+        <div class="step-label">Realization</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-circle">4</div>
+        <div class="step-label">Final<br>Preparation</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-circle">5</div>
+        <div class="step-label">Go Live</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-circle">6</div>
+        <div class="step-label">Post-Production<br>Support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries-section" id="industries">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <div class="section-tag">Sectors We Serve</div>
+      <h2 class="section-title">Industries Served</h2>
+      <p class="section-sub">Our SAP solutions are meticulously crafted to tackle distinct challenges across diverse industries — driving growth and operational excellence.</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-card fade-up"><div class="ind-icon">🛢️</div><h4>Oil & Gas</h4><p>Robust operations & field management</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🚗</div><h4>Automotive</h4><p>Supply chain & manufacturing</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">📱</div><h4>Mobile Phone</h4><p>Sales, service & supply chain</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🛒</div><h4>E-Commerce</h4><p>Online operations & customer experience</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">👕</div><h4>Textile & Garments</h4><p>Production & quality optimization</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">⚡</div><h4>Renewable Energy</h4><p>Project planning & monitoring</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🏗️</div><h4>EPC & Construction</h4><p>Project & procurement management</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🏢</div><h4>Real Estate</h4><p>Property & leasing management</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🔩</div><h4>Metals & Alloys</h4><p>Operational efficiency & quality control</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🧪</div><h4>Chemicals</h4><p>Process optimization & compliance</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🏭</div><h4>Precast Manufacturing</h4><p>Design, production & project management</p></div>
+      <div class="ind-card fade-up"><div class="ind-icon">🏦</div><h4>Trading</h4><p>Procurement & inventory management</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <div class="section-tag">Client Testimonials</div>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-sub">Happy clients are the bedrock of any strong business — and ours is no exception.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <p class="testi-text">Working with Jigsutech Business Solution has been a game-changer for our company. Their expert team provided seamless SAP implementation services, addressing our specific business needs. They understood the challenges we faced and guided us throughout the process. Highly recommended!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RS</div>
+          <div>
+            <div class="testi-name">Rajesh Sharma</div>
+            <div class="testi-role">Executive Director</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <p class="testi-text">We were struggling with system performance and outdated SAP functionalities until we engaged Jigsutech for SAP support and upgrade services. Their team identified and resolved critical issues, enhancing our system efficiency. Their dedication and expertise have earned our trust.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">NW</div>
+          <div>
+            <div class="testi-name">Nihal Wadhera</div>
+            <div class="testi-role">IT Head</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <p class="testi-text">Jigsutech's commitment to delivering exceptional SAP services is commendable. Their team provided outstanding support during our SAP upgrade. Their deep technical expertise and prompt response to our queries made the process hassle-free. Highly recommended!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SD</div>
+          <div>
+            <div class="testi-name">Sumaira Dhir</div>
+            <div class="testi-role">CIO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="certs-section">
+  <div class="certs-inner">
+    <div class="certs-left">
+      <h3>Certified & Trusted</h3>
+      <p>Our consultants hold globally recognized SAP certifications</p>
+    </div>
+    <div class="cert-badges">
+      <div class="cert-badge"><span>🏅</span>SAP CERTIFIED<br>PARTNER</div>
+      <div class="cert-badge"><span>☁️</span>SAP S/4 HANA<br>CERTIFIED</div>
+      <div class="cert-badge"><span>🔒</span>ISO QUALITY<br>ASSURED</div>
+      <div class="cert-badge"><span>⭐</span>96% CLIENT<br>SATISFACTION</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="solutions">
+  <div class="container">
+    <h2>Ready to Transform Your Business with SAP?</h2>
+    <p>Partner with Jigsutech Business Solution for an empowered journey forward. Let's build something exceptional together.</p>
+    <a href="#" class="btn-primary" onclick="openModal(); return false;" style="font-size:16px; padding: 16px 36px;">Get In Touch Today</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Jigsutech<br><span style="font-size:13px;font-weight:500;color:var(--gold)">BUSINESS SOLUTION</span></h3>
+      <p>Jigsutech Business Solution is a professional IT services and Management Consulting firm specializing in providing cost-effective and high-value SAP and IT Management Solutions.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">𝕏</a>
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services/sap-implementation.html">SAP Implementation</a></li>
+        <li><a href="services/rise-with-sap.html">RISE With SAP</a></li>
+        <li><a href="services/ams.html">Application Management (AMS)</a></li>
+        <li><a href="services/sap-migration.html">SAP Migration</a></li>
+        <li><a href="services/sap-support.html">SAP Support</a></li>
+        <li><a href="services/staffing.html">Resources Augmentation</a></li>
+        <li><a href="services/salesforce.html">Salesforce</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get In Touch</h4>
+      <div class="footer-contact-item">
+        <span class="fci">📍</span>
+        <span>Delhi, India</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fci">📞</span>
+        <span>+91 XXXXX XXXXX</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fci">✉️</span>
+        <span>info@Jigsutech.com</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fci">🌐</span>
+        <span>www.Jigsutech.com</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Jigsutech Business Solution. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms & Conditions</a>
+      <a href="sitemap.html">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <h3>Let's Get In Touch</h3>
+    <p>Give us a call or drop us a message — we endeavour to respond within 24 hours on business days.</p>
+
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="cf-name">Full Name</label>
+        <input type="text" id="cf-name" name="name" placeholder="Your full name" maxlength="80" required autocomplete="name">
+        <div class="form-error">Please enter your name (min 2 characters).</div>
+      </div>
+      <div class="form-group">
+        <label for="cf-email">Email Address</label>
+        <input type="email" id="cf-email" name="email" placeholder="Jigsutech@email.com" maxlength="120" required autocomplete="email">
+        <div class="form-error">Please enter a valid email address.</div>
+      </div>
+      <div class="form-group">
+        <label for="cf-phone">Phone Number</label>
+        <input type="tel" id="cf-phone" name="phone" placeholder="+91 92058 95792" maxlength="20" autocomplete="tel">
+        <div class="form-error">Please enter a valid phone number.</div>
+      </div>
+      <div class="form-group">
+        <label for="cf-service">Service Interested In</label>
+        <select id="cf-service" name="service">
+          <option>SAP Implementation</option>
+          <option>RISE with SAP</option>
+          <option>SAP Migration & Upgrades</option>
+          <option>Application Management (AMS)</option>
+          <option>SAP Integration</option>
+          <option>SAP Support</option>
+          <option>Staffing & Resources</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" placeholder="Tell us about your requirements..." maxlength="1000" required></textarea>
+        <div class="form-error">Please enter a short message (min 10 characters).</div>
+      </div>
+      <button type="submit" class="btn-submit">Send Message →</button>
+      <p class="form-note">We never share your details with third parties. This form does not store any data in your browser.</p>
+    </form>
+
+    <div class="form-success" id="contactSuccess">
+      <div class="form-success-icon">✓</div>
+      <h3 style="text-align:center;">Thank You!</h3>
+      <p style="text-align:center;">Your message has been received. Our team will get back to you within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  function switchTab(idx) {
+    document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+    document.querySelectorAll('.tab-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+  }
+
+  // Modal
+  function openModal() { document.getElementById('contactModal').classList.add('open'); }
+  function closeModal() { document.getElementById('contactModal').classList.remove('open'); }
+  document.getElementById('contactModal').addEventListener('click', function(e) {
+    if(e.target === this) closeModal();
+  });
+
+  // Scroll fade-up
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 10 ? '0 2px 30px rgba(0,0,0,0.4)' : '0 2px 20px rgba(0,0,0,0.3)';
+  });
+</script>
+</body>
+</html>

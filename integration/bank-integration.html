@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Integration – Jigsutech Business Solution</title>
+<meta name="description" content="SAP Bank Integration services by Jigsutech Business Solution.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0a1628;--blue:#1a4a9a;--gold:#f5a623;--gold-light:#ffc145;--white:#fff;--light-gray:#f4f6fb;--gray:#6b7a99;--text:#2c3e6b;--border:#dde3f0;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:'Open Sans',sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:70px;box-shadow:0 2px 20px rgba(0,0,0,0.3);}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .nav-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--blue),var(--gold));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px;color:#fff;letter-spacing:-1px;}
+  .nav-logo-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#fff;line-height:1.1;}
+  .nav-logo-text span{display:block;font-size:10px;font-weight:400;color:var(--gold);letter-spacing:2px;}
+  .nav-links{display:flex;align-items:center;gap:6px;list-style:none;}
+  .nav-links>li{position:relative;}
+  .nav-links>li>a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:13px;font-weight:500;padding:8px 12px;border-radius:4px;display:flex;align-items:center;gap:4px;transition:all 0.2s;font-family:'Montserrat',sans-serif;}
+  .nav-links>li>a:hover,.nav-links>li>a.active{color:var(--gold);background:rgba(255,255,255,0.07);}
+  .dropdown{position:relative;}.dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#fff;min-width:220px;border-radius:8px;box-shadow:0 8px 32px rgba(10,22,40,0.18);padding:8px 0;z-index:200;border-top:3px solid var(--gold);}
+  .dropdown:hover .dropdown-menu{display:block;}.dropdown-menu li{list-style:none;}.dropdown-menu li a{display:block;padding:9px 20px;font-size:13px;color:var(--text);text-decoration:none;transition:all 0.15s;font-family:'Open Sans',sans-serif;}
+  .dropdown-menu li a:hover{background:var(--light-gray);color:var(--blue);padding-left:26px;}
+  .has-sub{position:relative;}.has-sub>.sub-menu{display:none;position:absolute;left:100%;top:0;background:#fff;min-width:220px;border-radius:8px;box-shadow:0 8px 32px rgba(10,22,40,0.18);padding:8px 0;border-top:3px solid var(--blue);}
+  .has-sub:hover>.sub-menu{display:block;}.has-sub>a::after{content:' ›';}
+  .nav-cta{background:var(--gold)!important;color:var(--navy)!important;font-weight:700!important;border-radius:6px!important;padding:8px 18px!important;}
+  .nav-cta:hover{background:var(--gold-light)!important;}
+
+  .page-header{margin-top:70px;background:var(--navy);position:relative;overflow:hidden;padding:64px 40px;}
+  .page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(26,74,154,0.5) 0%,transparent 60%),radial-gradient(ellipse at 10% 80%,rgba(245,166,35,0.1) 0%,transparent 50%);}
+  .hero-grid-bg{position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:40px 40px;}
+  .page-header-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;}
+  .breadcrumbs{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:0.5px;margin-bottom:18px;flex-wrap:wrap;}
+  .breadcrumbs a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}.breadcrumbs a:hover{color:var(--gold);}.breadcrumbs .sep{color:rgba(255,255,255,0.25);}.breadcrumbs .current{color:var(--gold);}
+  .header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);color:var(--gold);font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;letter-spacing:1.5px;margin-bottom:16px;font-family:'Montserrat',sans-serif;}
+  .header-badge::before{content:'●';font-size:8px;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .page-header h1{font-family:'Montserrat',sans-serif;font-size:40px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:14px;max-width:760px;}
+  .page-header h1 span{color:var(--gold);}
+  .page-header p{color:rgba(255,255,255,0.7);font-size:15px;line-height:1.7;max-width:660px;}
+
+  section{padding:72px 40px;}.container{max-width:1200px;margin:0 auto;}
+  .section-tag{display:inline-block;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+  .section-title{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:14px;}
+  .section-sub{font-size:14px;color:var(--gray);line-height:1.7;max-width:600px;}
+  .section-header{margin-bottom:40px;}.section-header.centered{text-align:center;}.section-header.centered .section-sub{margin:0 auto;}
+
+  /* OVERVIEW */
+  .overview-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .overview-text p{font-size:15px;color:var(--gray);line-height:1.85;margin-bottom:20px;}
+  .points-list{list-style:none;}
+  .points-list li{padding:12px 0;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start;}
+  .points-list li:last-child{border-bottom:none;}
+  .pt-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--gold));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+  .pt-content h5{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:var(--navy);margin-bottom:2px;}
+  .pt-content p{font-size:12px;color:var(--gray);line-height:1.5;margin:0;}
+  .visual-box{background:var(--navy);border-radius:18px;min-height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .visual-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 70%,rgba(26,74,154,0.6),transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(245,166,35,0.2),transparent 50%);}
+  .visual-inner{position:relative;z-index:1;text-align:center;padding:36px;}
+  .v-icon{font-size:80px;display:block;margin-bottom:18px;}
+  .v-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#fff;line-height:1.35;}
+  .v-sub{font-size:12px;color:rgba(255,255,255,0.55);margin-top:8px;}
+
+  /* WHY CARDS */
+  .why-section{background:var(--light-gray);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .why-card{background:#fff;border-radius:14px;padding:28px 24px;border:1px solid var(--border);transition:all 0.3s;position:relative;overflow:hidden;}
+  .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .why-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(10,22,40,0.1);}.why-card:hover::before{transform:scaleX(1);}
+  .why-icon{font-size:32px;margin-bottom:12px;}
+  .why-card h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--navy);margin-bottom:8px;}
+  .why-card p{font-size:13px;color:var(--gray);line-height:1.6;}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(135deg,var(--blue) 0%,var(--navy) 100%);padding:72px 40px;text-align:center;}
+  .cta-section h2{font-family:'Montserrat',sans-serif;font-size:34px;font-weight:900;color:#fff;margin-bottom:14px;}
+  .cta-section p{color:rgba(255,255,255,0.7);font-size:15px;margin-bottom:32px;}
+  .btn-primary{background:var(--gold);color:var(--navy);padding:13px 30px;border-radius:6px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;text-decoration:none;display:inline-block;transition:all 0.25s;box-shadow:0 4px 16px rgba(245,166,35,0.35);}
+  .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);}
+  .btn-outline{background:transparent;color:#fff;padding:13px 30px;border-radius:6px;border:1.5px solid rgba(255,255,255,0.35);font-family:'Montserrat',sans-serif;font-weight:600;font-size:14px;text-decoration:none;display:inline-block;transition:all 0.25s;margin-left:12px;}
+  .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+
+  footer{background:#050e1f;padding:56px 40px 0;}
+  .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;}
+  .footer-brand h3{font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;color:#fff;margin-bottom:12px;}
+  .footer-brand p{color:rgba(255,255,255,0.5);font-size:13px;line-height:1.8;margin-bottom:18px;}
+  .footer-socials{display:flex;gap:10px;}
+  .social-btn{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;transition:all 0.2s;}
+  .social-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+  .footer-col h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;}
+  .footer-col ul{list-style:none;}.footer-col ul li{margin-bottom:9px;}.footer-col ul li a{color:rgba(255,255,255,0.55);font-size:13px;text-decoration:none;transition:all 0.2s;}.footer-col ul li a:hover{color:var(--gold);padding-left:4px;}
+  .fci-row{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}.fci-row .fci{font-size:15px;flex-shrink:0;margin-top:1px;}.fci-row span{color:rgba(255,255,255,0.55);font-size:13px;line-height:1.5;}
+  .footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.07);padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+  .footer-bottom p{color:rgba(255,255,255,0.35);font-size:12px;}
+  .footer-links{display:flex;gap:18px;}.footer-links a{color:rgba(255,255,255,0.35);font-size:12px;text-decoration:none;}.footer-links a:hover{color:var(--gold);}
+
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(5,14,31,0.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#fff;border-radius:16px;padding:36px;width:90%;max-width:480px;position:relative;box-shadow:0 24px 80px rgba(5,14,31,0.4);max-height:90vh;overflow-y:auto;}
+  .modal-close{position:absolute;top:14px;right:14px;background:var(--light-gray);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--gray);}
+  .modal-close:hover{background:var(--border);}
+  .modal h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:var(--navy);margin-bottom:6px;}
+  .modal>p{color:var(--gray);font-size:13px;margin-bottom:20px;}
+  .form-group{margin-bottom:14px;}.form-group label{display:block;font-size:11px;font-weight:600;color:var(--text);margin-bottom:5px;font-family:'Montserrat',sans-serif;letter-spacing:0.5px;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Open Sans',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);}
+  .form-group textarea{min-height:80px;resize:vertical;}
+  .form-error{font-size:11px;color:#c0392b;margin-top:3px;display:none;}.form-group.has-error input,.form-group.has-error textarea{border-color:#c0392b;}.form-group.has-error .form-error{display:block;}
+  .form-note{font-size:11px;color:var(--gray);margin-top:12px;line-height:1.6;}
+  .btn-submit{width:100%;background:var(--blue);color:#fff;border:none;padding:13px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.2s;}.btn-submit:hover{background:var(--navy);}
+  .form-success{display:none;text-align:center;padding:20px 0;}.form-success.show{display:block;}
+  .form-success-icon{width:52px;height:52px;border-radius:50%;background:rgba(245,166,35,0.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 14px;}
+
+  .fade-up{opacity:0;transform:translateY(28px);transition:all 0.6s ease;}.fade-up.visible{opacity:1;transform:translateY(0);}
+  @media(max-width:900px){.overview-grid{grid-template-columns:1fr;}.why-grid{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr 1fr;}nav{padding:0 20px;}.nav-links{display:none;}section{padding:52px 20px;}.page-header{padding:44px 20px;}.page-header h1{font-size:28px;}}
+  @media(max-width:600px){.why-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;}.btn-outline{margin-left:0;margin-top:10px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">JB</div>
+    <div class="nav-logo-text">Jigsutech<span>BUSINESS SOLUTION</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li class="dropdown">
+      <a href="#" class="active">Services ▾</a>
+      
+      <ul class="dropdown-menu">
+        <li class="has-sub"><a href="../services/sap-implementation.html">SAP Implementation</a>
+          <ul class="sub-menu">
+            <li><a href="../implementation/private-cloud.html">RISE with SAP S/4 HANA Private Cloud</a></li>
+            <li><a href="../implementation/public-cloud.html">RISE with SAP S/4 HANA Public Cloud</a></li>
+            <li><a href="../implementation/ecc-rollouts.html">SAP ECC & S/4 HANA Rollouts</a></li>
+            <li><a href="../implementation/ecc-to-s4hana.html">SAP Migration – ECC to S/4 HANA</a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="../services/sap-integration.html">SAP Integration</a>
+          <ul class="sub-menu">
+            <li><a href="machine-integration.html">Machine Integration</a></li>
+            <li><a href="ecommerce.html">E-Commerce</a></li>
+            <li><a href="websites.html">Websites</a></li>
+            <li><a href="payment-gateway.html">Payment Gateway</a></li>
+            <li><a href="crm-hcm.html">HCM, Salesforce & CRMs</a></li>
+            <li><a href="bank-integration.html">Bank Integration</a></li>
+            <li><a href="einvoice-ewaybill.html">E-Invoice & E-Way Bill</a></li>
+            <li><a href="weighbridge.html">Weighbridge</a></li>
+            <li><a href="other-integrations.html">Other Integrations</a></li>
+          </ul>
+        </li>
+        <li><a href="../services/sap-migration.html">SAP Migration</a></li>
+        <li><a href="../services/sap-support.html">SAP Support</a></li>
+        <li><a href="../services/development.html">Development</a></li>
+        <li><a href="../services/staffing.html">Staffing</a></li>
+        <li><a href="../services/salesforce.html">Salesforce</a></li>
+      </ul>
+
+    </li>
+    <li><a href="../index.html#solutions">Solutions</a></li>
+    <li><a href="../industries.html">Industry</a></li>
+    <li><a href="../careers.html">Careers</a></li>
+    <li><a href="../blogs.html">Blogs</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(); return false;">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="hero-grid-bg"></div>
+  <div class="page-header-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a><span class="sep">›</span>
+      <a href="../services/sap-integration.html">SAP Integration</a><span class="sep">›</span>
+      <span class="current">Bank Integration</span>
+    </nav>
+    <div class="header-badge">SAP INTEGRATION</div>
+    <h1>Automate <span>Banking within SAP</span></h1>
+    <p>Connect SAP directly with your banks via API-based integration or Host-to-Host connectivity — automating payment processing, bank statement import, and reconciliation for faster, error-free treasury operations.</p>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section style="background:#fff;">
+  <div class="container">
+    <div class="overview-grid">
+      <div class="fade-up">
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Bank Integration</h2>
+        <ul class="points-list">
+          
+        <li class="fade-up">
+          <div class="pt-icon">01</div>
+          <div class="pt-content">
+            <h5>API-Based Bank Integration</h5>
+            <p>Real-time payment initiation and status updates via bank APIs — fully integrated with SAP FI payment runs.</p>
+          </div>
+        </li>
+        <li class="fade-up">
+          <div class="pt-icon">02</div>
+          <div class="pt-content">
+            <h5>Host-to-Host (H2H) Connectivity</h5>
+            <p>Secure file-based payment integration between SAP and bank — using SFTP/HTTPS for bulk payment files.</p>
+          </div>
+        </li>
+        <li class="fade-up">
+          <div class="pt-icon">03</div>
+          <div class="pt-content">
+            <h5>Electronic Bank Statement (MT940)</h5>
+            <p>Automate bank statement import into SAP daily — triggering automatic reconciliation of open items.</p>
+          </div>
+        </li>
+        <li class="fade-up">
+          <div class="pt-icon">04</div>
+          <div class="pt-content">
+            <h5>Multi-Bank Support</h5>
+            <p>HDFC, ICICI, SBI, Axis, Kotak, HSBC, Standard Chartered — we integrate all major Indian and international banks.</p>
+          </div>
+        </li>
+        <li class="fade-up">
+          <div class="pt-icon">05</div>
+          <div class="pt-content">
+            <h5>Positive Pay & Fraud Control</h5>
+            <p>Transmit cheque issuance data to banks for positive pay verification — reducing fraud risk.</p>
+          </div>
+        </li>
+        </ul>
+      </div>
+      <div class="visual-box fade-up">
+        <div class="visual-inner">
+          <span class="v-icon">🏦</span>
+          <div class="v-label">Bank Integration<br>with SAP</div>
+          <div class="v-sub">API · Host-to-Host · SWIFT · SFTP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY JIGSUTECH -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <div class="section-tag">Key Advantages</div>
+      <h2 class="section-title">Why Choose Jigsutech</h2>
+      <p class="section-sub">Certified SAP integration experts delivering reliable, scalable, and secure integrations on time.</p>
+    </div>
+    <div class="why-grid">
+      
+      <div class="why-card fade-up">
+        <div class="why-icon">⚡</div>
+        <h4>Instant Payments</h4>
+        <p>Payment files flow from SAP to bank automatically — no manual uploads.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">📋</div>
+        <h4>Auto Reconciliation</h4>
+        <p>Bank statements imported and cleared daily — month-end is effortless.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🔐</div>
+        <h4>Secure & Compliant</h4>
+        <p>Encrypted, secure connectivity meeting RBI and bank security standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Integrate?</h2>
+    <p>Talk to our SAP integration experts — we'll design the right solution for your business.</p>
+    <a href="#" class="btn-primary" onclick="openModal(); return false;" style="font-size:15px;padding:15px 34px;">Get a Free Consultation</a>
+    <a href="../index.html" class="btn-outline" style="font-size:15px;padding:15px 34px;">View All Services</a>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Jigsutech<br><span style="font-size:13px;font-weight:500;color:var(--gold)">BUSINESS SOLUTION</span></h3>
+      <p>Professional IT services and Management Consulting firm specializing in cost-effective, high-value SAP solutions.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">in</a><a href="#" class="social-btn">𝕏</a><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="../services/sap-implementation.html">SAP Implementation</a></li>
+      <li><a href="../services/sap-integration.html">SAP Integration</a></li>
+      <li><a href="../services/sap-migration.html">SAP Migration</a></li>
+      <li><a href="../services/sap-support.html">SAP Support</a></li>
+      <li><a href="../services/staffing.html">Staffing</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Company</h4><ul>
+      <li><a href="../about.html">About Us</a></li>
+      <li><a href="../industries.html">Industries</a></li>
+      <li><a href="../careers.html">Careers</a></li>
+      <li><a href="../blogs.html">Blogs</a></li>
+      <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Get In Touch</h4>
+      <div class="fci-row"><span class="fci">📍</span><span>Delhi, India</span></div>
+      <div class="fci-row"><span class="fci">📞</span><span>+91 XXXXX XXXXX</span></div>
+      <div class="fci-row"><span class="fci">✉️</span><span>info@Jigsutech.com</span></div>
+      <div class="fci-row"><span class="fci">🌐</span><span>www.Jigsutech.com</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Jigsutech Business Solution. All rights reserved.</p>
+    <div class="footer-links"><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms.html">Terms & Conditions</a></div>
+  </div>
+</footer>
+
+
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Let's Get In Touch</h3>
+    <p>Tell us about your integration needs — we'll respond within 24 business hours.</p>
+    <form id="contactForm" novalidate>
+      <div class="form-group"><label>Full Name</label><input type="text" id="cf-name" placeholder="Your full name" required><div class="form-error">Please enter your name (min 2 characters).</div></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="cf-email" placeholder="your@email.com" required><div class="form-error">Please enter a valid email.</div></div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="form-group"><label>Service Interested In</label><select id="cf-service"><option>Machine Integration</option><option>E-Commerce Integration</option><option>Website Integration</option><option>Payment Gateway Integration</option><option>HCM, Salesforce & CRM Integration</option><option selected>Bank Integration</option><option>E-Invoice & E-Way Bill Integration</option><option>Weighbridge Integration</option><option>Other SAP Integrations</option></select></div>
+      <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Describe your integration requirements..." required></textarea><div class="form-error">Please enter a message (min 10 chars).</div></div>
+      <button type="submit" class="btn-submit">Send Message →</button>
+      <p class="form-note">We never share your details with third parties.</p>
+    </form>
+    <div class="form-success" id="contactSuccess">
+      <div class="form-success-icon">✓</div>
+      <h3 style="text-align:center;">Thank You!</h3>
+      <p style="text-align:center;color:var(--gray);font-size:13px;">Our team will get back to you within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function openModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
+  function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('contactModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=window.scrollY>10?'0 2px 30px rgba(0,0,0,0.4)':'0 2px 20px rgba(0,0,0,0.3)';});
+  (function(){
+    const form=document.getElementById('contactForm');if(!form)return;
+    const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function validate(id,check){const el=document.getElementById(id);const g=el.closest('.form-group');const ok=check(el.value.trim());g.classList.toggle('has-error',!ok);return ok;}
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      const v1=validate('cf-name',v=>v.length>=2);
+      const v2=validate('cf-email',v=>emailRe.test(v));
+      const v3=validate('cf-message',v=>v.length>=10);
+      if(!v1||!v2||!v3)return;
+      const btn=form.querySelector('.btn-submit');btn.disabled=true;btn.textContent='Sending...';
+      setTimeout(()=>{form.style.display='none';document.getElementById('contactSuccess').classList.add('show');},600);
+    });
+  })();
+</script>
+
+</body>
+</html>

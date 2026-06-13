@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RISE with SAP S/4 HANA Public Cloud – Jigsutech Business Solution</title>
+<meta name="description" content="RISE with SAP S/4 HANA Public Cloud consulting and implementation services by Jigsutech Business Solution.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628; --navy-mid: #102040; --blue: #1a4a9a; --blue-bright: #1e5bbf;
+    --gold: #f5a623; --gold-light: #ffc145; --white: #ffffff;
+    --light-gray: #f4f6fb; --gray: #6b7a99; --text: #2c3e6b; --border: #dde3f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 70px; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon { width: 38px; height: 38px; background: linear-gradient(135deg, var(--blue), var(--gold)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 16px; color: white; letter-spacing: -1px; }
+  .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: var(--white); line-height: 1.1; }
+  .nav-logo-text span { display: block; font-size: 10px; font-weight: 400; color: var(--gold); letter-spacing: 2px; }
+  .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+  .nav-links > li { position: relative; }
+  .nav-links > li > a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 12px; border-radius: 4px; display: flex; align-items: center; gap: 4px; transition: all 0.2s; font-family: 'Montserrat', sans-serif; letter-spacing: 0.3px; }
+  .nav-links > li > a:hover, .nav-links > li > a.active { color: var(--gold); background: rgba(255,255,255,0.07); }
+  .dropdown { position: relative; }
+  .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: white; min-width: 220px; border-radius: 8px; box-shadow: 0 8px 32px rgba(10,22,40,0.18); padding: 8px 0; z-index: 200; border-top: 3px solid var(--gold); }
+  .dropdown:hover .dropdown-menu { display: block; }
+  .dropdown-menu li { list-style: none; }
+  .dropdown-menu li a { display: block; padding: 9px 20px; font-size: 13px; color: var(--text); text-decoration: none; transition: all 0.15s; font-family: 'Open Sans', sans-serif; }
+  .dropdown-menu li a:hover { background: var(--light-gray); color: var(--blue); padding-left: 26px; }
+  .has-sub { position: relative; }
+  .has-sub > .sub-menu { display: none; position: absolute; left: 100%; top: 0; background: white; min-width: 220px; border-radius: 8px; box-shadow: 0 8px 32px rgba(10,22,40,0.18); padding: 8px 0; border-top: 3px solid var(--blue); }
+  .has-sub:hover > .sub-menu { display: block; }
+  .has-sub > a::after { content: ' ›'; }
+  .nav-cta { background: var(--gold) !important; color: var(--navy) !important; font-weight: 700 !important; border-radius: 6px !important; padding: 8px 18px !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  .page-header { margin-top: 70px; background: var(--navy); position: relative; overflow: hidden; padding: 72px 40px; }
+  .page-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(26,74,154,0.5) 0%, transparent 60%), radial-gradient(ellipse at 10% 80%, rgba(245,166,35,0.12) 0%, transparent 50%); }
+  .hero-grid-bg { position: absolute; inset: 0; opacity: 0.04; background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 40px 40px; }
+  .page-header-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+  .breadcrumbs { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.5); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 20px; flex-wrap: wrap; }
+  .breadcrumbs a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .breadcrumbs a:hover { color: var(--gold); }
+  .breadcrumbs .sep { color: rgba(255,255,255,0.25); }
+  .breadcrumbs .current { color: var(--gold); }
+  .header-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,166,35,0.15); border: 1px solid rgba(245,166,35,0.3); color: var(--gold); font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 20px; letter-spacing: 1.5px; margin-bottom: 18px; font-family: 'Montserrat', sans-serif; }
+  .header-badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .page-header h1 { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 900; color: white; line-height: 1.2; margin-bottom: 16px; max-width: 800px; }
+  .page-header h1 span { color: var(--gold); }
+  .page-header p { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.7; max-width: 680px; }
+
+  section { padding: 80px 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+  .section-sub { font-size: 15px; color: var(--gray); line-height: 1.7; max-width: 640px; }
+  .section-header { margin-bottom: 48px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-sub { margin: 0 auto; }
+
+  /* COMPARE TABLE */
+  .compare-section { background: white; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
+  .compare-card { border-radius: 16px; padding: 36px 32px; border: 2px solid var(--border); transition: all 0.3s; }
+  .compare-card.highlight { border-color: var(--gold); background: linear-gradient(135deg, rgba(245,166,35,0.04), rgba(26,74,154,0.04)); }
+  .compare-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: var(--navy); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .compare-card h4 .badge { font-size: 11px; background: var(--gold); color: var(--navy); padding: 3px 10px; border-radius: 12px; font-weight: 700; letter-spacing: 0.5px; }
+  .compare-list { list-style: none; }
+  .compare-list li { padding: 8px 0; font-size: 14px; color: var(--text); display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid var(--border); }
+  .compare-list li:last-child { border-bottom: none; }
+  .compare-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+  /* BENEFITS */
+  .benefits-section { background: var(--light-gray); }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .benefit-card { background: white; border-radius: 14px; padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s; position: relative; overflow: hidden; }
+  .benefit-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(10,22,40,0.1); }
+  .benefit-card:hover::before { transform: scaleX(1); }
+  .benefit-icon { font-size: 36px; margin-bottom: 16px; }
+  .benefit-card h4 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; color: var(--navy); margin-bottom: 10px; }
+  .benefit-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* PROCESS */
+  .process-section { background: var(--navy); padding: 80px 40px; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+  .process-step { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 22px; text-align: center; transition: all 0.3s; }
+  .process-step:hover { background: rgba(255,255,255,0.09); border-color: var(--gold); transform: translateY(-4px); }
+  .process-step-num { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; color: var(--gold); }
+  .process-step h5 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: white; margin-bottom: 8px; }
+  .process-step p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* OVERVIEW */
+  .overview-section { background: white; }
+  .overview-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
+  .overview-text p { font-size: 15px; color: var(--gray); line-height: 1.85; margin-bottom: 16px; }
+  .overview-visual { background: var(--navy); border-radius: 20px; min-height: 380px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .overview-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 70%, rgba(26,74,154,0.6), transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(245,166,35,0.2), transparent 50%); }
+  .visual-inner { position: relative; z-index: 1; text-align: center; padding: 40px; }
+  .visual-icon { font-size: 90px; margin-bottom: 20px; display: block; }
+  .visual-label { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: white; line-height: 1.3; }
+  .visual-sublabel { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+  .highlights-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
+  .hi-item { background: var(--light-gray); border-radius: 10px; padding: 16px 18px; border-left: 3px solid var(--gold); }
+  .hi-item h5 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--navy); margin-bottom: 4px; }
+  .hi-item p { font-size: 12px; color: var(--gray); line-height: 1.5; margin: 0; }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%); padding: 80px 40px; text-align: center; }
+  .cta-section h2 { font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 900; color: white; margin-bottom: 16px; }
+  .cta-section p { color: rgba(255,255,255,0.7); font-size: 16px; margin-bottom: 36px; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: 14px 32px; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; text-decoration: none; display: inline-block; transition: all 0.25s; box-shadow: 0 4px 16px rgba(245,166,35,0.35); }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: white; padding: 14px 32px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.4); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; display: inline-block; transition: all 0.25s; margin-left: 14px; }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  footer { background: #050e1f; padding: 60px 40px 0; }
+  .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; }
+  .footer-brand h3 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; color: white; margin-bottom: 14px; }
+  .footer-brand p { color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.8; margin-bottom: 20px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); font-size: 14px; text-decoration: none; transition: all 0.2s; }
+  .social-btn:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.55); font-size: 13px; text-decoration: none; transition: all 0.2s; }
+  .footer-col ul li a:hover { color: var(--gold); padding-left: 4px; }
+  .footer-contact-item { display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start; }
+  .footer-contact-item .fci { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .footer-contact-item span { color: rgba(255,255,255,0.55); font-size: 13px; line-height: 1.5; }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 12px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: rgba(255,255,255,0.35); font-size: 12px; text-decoration: none; }
+  .footer-links a:hover { color: var(--gold); }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(5,14,31,0.75); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: white; border-radius: 16px; padding: 40px; width: 90%; max-width: 480px; position: relative; box-shadow: 0 24px 80px rgba(5,14,31,0.4); max-height: 90vh; overflow-y: auto; }
+  .modal-close { position: absolute; top: 16px; right: 16px; background: var(--light-gray); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--gray); }
+  .modal-close:hover { background: var(--border); }
+  .modal h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; color: var(--navy); margin-bottom: 6px; }
+  .modal > p { color: var(--gray); font-size: 14px; margin-bottom: 24px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px; font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px; }
+  .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Open Sans', sans-serif; color: var(--text); transition: border-color 0.2s; outline: none; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue); }
+  .form-group textarea { min-height: 90px; resize: vertical; }
+  .form-error { font-size: 12px; color: #c0392b; margin-top: 4px; display: none; }
+  .form-group.has-error input, .form-group.has-error textarea { border-color: #c0392b; }
+  .form-group.has-error .form-error { display: block; }
+  .form-note { font-size: 12px; color: var(--gray); margin-top: 14px; line-height: 1.6; }
+  .btn-submit { width: 100%; background: var(--blue); color: white; border: none; padding: 14px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.2s; }
+  .btn-submit:hover { background: var(--navy); }
+  .form-success { display: none; text-align: center; padding: 20px 0; }
+  .form-success.show { display: block; }
+  .form-success-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(245,166,35,0.15); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; }
+
+  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .overview-grid, .compare-grid { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .highlights-row { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .page-header { padding: 48px 20px; }
+    .page-header h1 { font-size: 28px; }
+  }
+  @media (max-width: 600px) {
+    .benefits-grid, .process-steps, .highlights-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .btn-outline { margin-left: 0; margin-top: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">JB</div>
+    <div class="nav-logo-text">Jigsutech<span>BUSINESS SOLUTION</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li class="dropdown">
+      <a href="#" class="active">Services ▾</a>
+      <ul class="dropdown-menu">
+        <li class="has-sub"><a href="../services/sap-implementation.html">SAP Implementation</a>
+          <ul class="sub-menu">
+            <li><a href="private-cloud.html">RISE with SAP S/4 HANA Private Cloud</a></li>
+            <li><a href="public-cloud.html">RISE with SAP S/4 HANA Public Cloud</a></li>
+            <li><a href="ecc-rollouts.html">SAP ECC & S/4 HANA Rollouts</a></li>
+            <li><a href="ecc-to-s4hana.html">SAP Migration – ECC to S/4 HANA</a></li>
+          </ul>
+        </li>
+        <li><a href="../services/sap-migration.html">SAP Migration</a></li>
+        <li><a href="../services/sap-integration.html">SAP Integration</a></li>
+        <li><a href="../services/sap-support.html">SAP Support</a></li>
+        <li><a href="../services/development.html">Development</a></li>
+        <li><a href="../services/staffing.html">Staffing</a></li>
+        <li><a href="../services/salesforce.html">Salesforce</a></li>
+      </ul>
+    </li>
+    <li><a href="../index.html#solutions">Solutions</a></li>
+    <li><a href="../industries.html">Industry</a></li>
+    <li><a href="../careers.html">Careers</a></li>
+    <li><a href="../blogs.html">Blogs</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(); return false;">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="hero-grid-bg"></div>
+  <div class="page-header-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a><span class="sep">›</span>
+      <a href="../services/sap-implementation.html">SAP Implementation</a><span class="sep">›</span>
+      <span class="current">RISE with SAP S/4 HANA Public Cloud</span>
+    </nav>
+    <div class="header-badge">SAP IMPLEMENTATION</div>
+    <h1>RISE with SAP S/4 HANA <span>Public Cloud</span></h1>
+    <p>Accelerate your digital transformation with SAP's most agile cloud offering — a fully standardized, continuously updated intelligent ERP delivered through a shared multi-tenant cloud infrastructure for maximum speed and value.</p>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="overview-section">
+  <div class="container">
+    <div class="overview-grid">
+      <div class="overview-text fade-up">
+        <div class="section-tag">What Is It</div>
+        <h2 class="section-title">RISE with SAP S/4 HANA Public Cloud</h2>
+        <p>RISE with SAP S/4 HANA Public Cloud is SAP's fastest path to the intelligent enterprise. Built on a standardized, multi-tenant cloud architecture, it delivers the full power of SAP S/4 HANA with automatic quarterly updates, built-in best practices, and a lower total cost of ownership.</p>
+        <p>Jigsutech helps organizations adopt SAP Public Cloud using SAP's Activate methodology, ensuring rapid deployment, smooth adoption, and continuous innovation — without the complexity of traditional ERP projects.</p>
+        <div class="highlights-row">
+          <div class="hi-item">
+            <h5>⚡ Fast Deployment</h5>
+            <p>Go-live in months, not years</p>
+          </div>
+          <div class="hi-item">
+            <h5>🔄 Always Current</h5>
+            <p>Automatic quarterly SAP updates</p>
+          </div>
+          <div class="hi-item">
+            <h5>💰 Lower TCO</h5>
+            <p>Subscription-based, no hardware</p>
+          </div>
+        </div>
+      </div>
+      <div class="overview-visual fade-up">
+        <div class="visual-inner">
+          <span class="visual-icon">☁️</span>
+          <div class="visual-label">RISE with SAP<br>S/4 HANA Public Cloud</div>
+          <div class="visual-sublabel">Agile. Standardized. Always Current.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare-section" style="background:var(--light-gray)">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <div class="section-tag">Public vs Private</div>
+      <h2 class="section-title">Is Public Cloud Right for You?</h2>
+      <p class="section-sub">Understand which RISE with SAP deployment model best aligns with your business priorities.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card highlight fade-up">
+        <h4>☁️ Public Cloud <span class="badge">RECOMMENDED</span></h4>
+        <ul class="compare-list">
+          <li>Fastest time-to-value — go-live in 3–6 months</li>
+          <li>Standardized SAP best practices out of the box</li>
+          <li>Automatic quarterly updates — always on latest SAP version</li>
+          <li>Lower TCO — shared infrastructure reduces costs</li>
+          <li>Ideal for growing businesses and greenfield implementations</li>
+          <li>Limited customization — configure, not customize</li>
+          <li>SAP-managed infrastructure and operations</li>
+        </ul>
+      </div>
+      <div class="compare-card fade-up">
+        <h4>🏛️ Private Cloud</h4>
+        <ul class="compare-list">
+          <li>Dedicated infrastructure — no resource sharing</li>
+          <li>Deep customization and custom code support</li>
+          <li>Suitable for complex, highly customized environments</li>
+          <li>Higher TCO but more control and flexibility</li>
+          <li>Ideal for large enterprises with strict data requirements</li>
+          <li>Customer-controlled update cycles</li>
+          <li>SAP-managed infrastructure with customer oversight</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="section-header centered fade-up">
+      <div class="section-tag">Why Public Cloud</div>
+      <h2 class="section-title">Key Benefits</h2>
+      <p class="section-sub">Unlock the speed, simplicity, and innovation of SAP's most modern cloud deployment model.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🚀</div>
+        <h4>Rapid Time-to-Value</h4>
+        <p>Leverage SAP's pre-configured best practice content and Activate methodology to go live in months — dramatically faster than traditional ERP implementations.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🔄</div>
+        <h4>Always Up-to-Date</h4>
+        <p>Automatic quarterly updates keep you on the latest SAP innovations — AI capabilities, new modules, regulatory changes — without disruptive upgrade projects.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">💡</div>
+        <h4>Built-in Best Practices</h4>
+        <p>Start with SAP's industry best practices pre-configured. Adopt proven processes immediately rather than re-inventing workflows from scratch.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">📉</div>
+        <h4>Lowest Total Cost</h4>
+        <p>Shared infrastructure means significantly lower per-user costs. No capital expenditure, no hardware refresh cycles — a pure operating expense model.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🤖</div>
+        <h4>AI & Analytics Embedded</h4>
+        <p>Joule AI copilot, real-time embedded analytics, and intelligent automation are built into every SAP S/4 HANA Public Cloud process from day one.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🔗</div>
+        <h4>Extensible via BTP</h4>
+        <p>Extend and integrate without modifying SAP core. Use SAP Business Technology Platform for custom apps, integrations, and innovations that run alongside SAP cleanly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-tag" style="color:var(--gold)">SAP Activate</div>
+      <h2 class="section-title" style="color:white">Our Implementation Approach</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6);margin:0 auto">We follow SAP's proven Activate methodology — purpose-built for rapid, fit-to-standard Public Cloud deployments.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="process-step-num">1</div>
+        <h5>Discover</h5>
+        <p>Assess current state, define objectives, and map SAP best practices to your business processes.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-step-num">2</div>
+        <h5>Prepare</h5>
+        <p>Set up project governance, configure starter system, and begin fit-to-standard workshops with key stakeholders.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-step-num">3</div>
+        <h5>Explore</h5>
+        <p>Run fit-to-standard analysis, confirm solution scope, and design integrations and extensions via BTP.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-step-num">4</div>
+        <h5>Realize & Deploy</h5>
+        <p>Configure the system, migrate data, complete testing, train users, and execute a smooth go-live cutover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Start Your Public Cloud Journey Today</h2>
+    <p>Jigsutech's SAP-certified experts will help you adopt RISE with SAP S/4 HANA Public Cloud — fast, efficiently, and with minimal disruption to your business.</p>
+    <a href="#" class="btn-primary" onclick="openModal(); return false;" style="font-size:16px; padding: 16px 36px;">Schedule a Consultation</a>
+    <a href="../index.html" class="btn-outline" style="font-size:16px; padding: 16px 36px;">View All Services</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Jigsutech<br><span style="font-size:13px;font-weight:500;color:var(--gold)">BUSINESS SOLUTION</span></h3>
+      <p>Professional IT services and Management Consulting firm specializing in cost-effective, high-value SAP solutions.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">in</a><a href="#" class="social-btn">𝕏</a><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="../services/sap-implementation.html">SAP Implementation</a></li><li><a href="../services/rise-with-sap.html">RISE With SAP</a></li><li><a href="../services/sap-migration.html">SAP Migration</a></li><li><a href="../services/sap-support.html">SAP Support</a></li><li><a href="../services/staffing.html">Staffing</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Us</a></li><li><a href="../industries.html">Industries</a></li><li><a href="../careers.html">Careers</a></li><li><a href="../blogs.html">Blogs</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
+    <div class="footer-col"><h4>Get In Touch</h4>
+      <div class="footer-contact-item"><span class="fci">📍</span><span>Delhi, India</span></div>
+      <div class="footer-contact-item"><span class="fci">📞</span><span>+91 XXXXX XXXXX</span></div>
+      <div class="footer-contact-item"><span class="fci">✉️</span><span>info@Jigsutech.com</span></div>
+      <div class="footer-contact-item"><span class="fci">🌐</span><span>www.Jigsutech.com</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Jigsutech Business Solution. All rights reserved.</p>
+    <div class="footer-links"><a href="../privacy-policy.html">Privacy Policy</a><a href="../terms.html">Terms & Conditions</a></div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Let's Get In Touch</h3>
+    <p>Tell us about your SAP Public Cloud requirements — we'll respond within 24 business hours.</p>
+    <form id="contactForm" novalidate>
+      <div class="form-group"><label>Full Name</label><input type="text" id="cf-name" placeholder="Your full name" required><div class="form-error">Please enter your name (min 2 characters).</div></div>
+      <div class="form-group"><label>Email Address</label><input type="email" id="cf-email" placeholder="your@email.com" required><div class="form-error">Please enter a valid email address.</div></div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="form-group"><label>Service Interested In</label><select id="cf-service"><option selected>RISE with SAP S/4 HANA Public Cloud</option><option>RISE with SAP S/4 HANA Private Cloud</option><option>SAP Implementation</option><option>SAP Migration & Upgrades</option><option>SAP Support</option><option>Other</option></select></div>
+      <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Tell us about your requirements..." required></textarea><div class="form-error">Please enter a short message (min 10 characters).</div></div>
+      <button type="submit" class="btn-submit">Send Message →</button>
+      <p class="form-note">We never share your details with third parties.</p>
+    </form>
+    <div class="form-success" id="contactSuccess">
+      <div class="form-success-icon">✓</div>
+      <h3 style="text-align:center;">Thank You!</h3>
+      <p style="text-align:center;color:var(--gray);font-size:14px;">Your message has been received. Our team will get back to you within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal() { document.getElementById('contactModal').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal() { document.getElementById('contactModal').classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('contactModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+  const obs = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{ threshold:0.1 });
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+  window.addEventListener('scroll',()=>{ document.querySelector('nav').style.boxShadow = window.scrollY>10?'0 2px 30px rgba(0,0,0,0.4)':'0 2px 20px rgba(0,0,0,0.3)'; });
+  (function(){ const form=document.getElementById('contactForm'); if(!form) return; const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/; function validate(id,check){ const el=document.getElementById(id); const g=el.closest('.form-group'); const ok=check(el.value.trim()); g.classList.toggle('has-error',!ok); return ok; } form.addEventListener('submit',function(e){ e.preventDefault(); const v1=validate('cf-name',v=>v.length>=2); const v2=validate('cf-email',v=>emailRe.test(v)); const v3=validate('cf-message',v=>v.length>=10); if(!v1||!v2||!v3) return; const btn=form.querySelector('.btn-submit'); btn.disabled=true; btn.textContent='Sending...'; setTimeout(()=>{ form.style.display='none'; document.getElementById('contactSuccess').classList.add('show'); },600); }); })();
+</script>
+</body>
+</html>
